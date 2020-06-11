@@ -1,4 +1,4 @@
-FROM python:3.9.0b2-alpine3.12
+FROM python:latest
 
 COPY . /app
 
