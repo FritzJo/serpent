@@ -19,7 +19,6 @@ def test(image_name):
     if not os.path.isfile('static/images/' + image_name + '.png'):
         return "404 - Image not found"
     img = Image.open('static/images/' + image_name + '.png')
-    bar = Image.open('static/images/bar.jpg')
     draw = ImageDraw.Draw(img)
     font = ImageFont.load_default().font
 
@@ -31,10 +30,11 @@ def test(image_name):
 
     output = io.BytesIO()
 
-    bg_w, bg_h = bar.size
-    img_w, img_h = img.size
-    offset = ((bg_w - img_w) // 2, (bg_h - img_h) // 2)
-    img.paste(bar, (100, 0))
+    for overlays in config['extras']:
+        offset = tuple(overlays['offset'])
+        image_file = overlays['filename']
+        bar = Image.open('static/images/' + image_file)
+        img.paste(bar, offset)
 
     img.convert('RGBA').save(output, format='PNG')
     output.seek(0, 0)
