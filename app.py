@@ -4,7 +4,7 @@ from flask import Flask, request, send_file
 from PIL import ImageFont
 from PIL import ImageDraw
 
-from storage import get_config, get_image
+from storage import get_config, get_image, get_font
 
 app = Flask(__name__)
 
@@ -27,12 +27,17 @@ def test(image_name):
     # img = Image.open('static/images/' + image_name + '.png')
     img = get_image(image_name + '.png')
     draw = ImageDraw.Draw(img)
-    font = ImageFont.load_default().font
 
     for info in config['textfields']:
         color = tuple(info['color'])
         position = tuple(info['position'])
         text = request.args.get(info['name'])
+        font_info = tuple(info['font'])
+        try:
+            font = get_font(font_info[0], font_info[1])
+        except:
+            font = ImageFont.load_default().font
+
         draw.text(position, text, color, font=font)
 
     output = io.BytesIO()

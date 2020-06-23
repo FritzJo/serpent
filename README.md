@@ -12,5 +12,6 @@ This repository contains the code for a simple web service to manipulate images.
 
 ## How To
 * Place the base images in the /static/images directory
+* [Set the environment variables](https://cloud.google.com/run/docs/configuring/environment-variables) for extra configurations
 * Create a configuration file for each image with the same name (just ending in json) in the /static/layouts directory
 * Run the service and access the image via its name, combined with the defined parameters
