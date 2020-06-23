@@ -31,7 +31,7 @@ def get_image(image_name):
         client = storage.Client()
         bucket = client.get_bucket(bucket_name)
         image_blob = bucket.get_blob('static/images/' + image_name).download_as_string()
-        img_bytes = io.BytesIO()
+        img_bytes = io.BytesIO(image_blob)
         return Image.open(img_bytes)
     elif stage == 'dev':
         print("Running in dev environment, loading image from local file system")
