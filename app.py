@@ -1,10 +1,10 @@
-import json
 import io
 import os.path
 from flask import Flask, request, send_file
-from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
+
+from storage import get_config, get_image
 
 app = Flask(__name__)
 
@@ -17,11 +17,12 @@ def test(image_name):
             layout_name = image_name
         else:
             return "Please specify a valid layout!"
-    config = load_config(layout_name)
+    config = get_config(layout_name)
 
     if not os.path.isfile('static/images/' + image_name + '.png'):
         return "404 - Image not found"
-    img = Image.open('static/images/' + image_name + '.png')
+    # img = Image.open('static/images/' + image_name + '.png')
+    img = get_image(image_name + '.png')
     draw = ImageDraw.Draw(img)
     font = ImageFont.load_default().font
 
@@ -37,18 +38,21 @@ def test(image_name):
         if extra['type'] == "image":
             offset = tuple(extra['offset'])
             image_file = extra['filename']
-            bar = Image.open('static/images/' + image_file)
+            # bar = Image.open('static/images/' + image_file)
+            bar = get_image(image_file)
             img.paste(bar, offset)
         if extra['type'] == "progressbar":
             # Add progressbar background
             offset = tuple(extra['position_bar'])
             image_file = extra['filename_bar']
-            bar = Image.open('static/images/' + image_file)
+            # bar = Image.open('static/images/' + image_file)
+            bar = get_image(image_file)
             img.paste(bar, offset)
 
             position_bar = tuple(extra['position_bar'])
             filename_bar = extra['filename_bar']
-            bar = Image.open('static/images/' + filename_bar)
+            # bar = Image.open('static/images/' + filename_bar)
+            bar = get_image(filename_bar)
             width, height = bar.size
             width_pointer = extra['width_pointer']
             pointer_color = tuple(extra['color_pointer'])
@@ -74,12 +78,6 @@ def test(image_name):
     output.seek(0, 0)
 
     return send_file(output, mimetype='image/png', as_attachment=False)
-
-
-def load_config(name):
-    with open('static/layouts/' + name + '.json') as json_file:
-        data = json.load(json_file)
-        return data
 
 
 if __name__ == "__main__":
