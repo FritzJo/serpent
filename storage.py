@@ -14,7 +14,7 @@ def get_config(config_name):
         blob = bucket.get_blob('static/layouts/' + config_name + '.json')
         json_file = blob.download_as_string()
         json_file = json_file.decode("utf-8")
-        data = json.load(json_file)
+        data = json.loads(json_file)
         return data
     elif stage == 'dev':
         print("Running in dev environment, loading config from local file system")
