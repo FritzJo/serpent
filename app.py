@@ -12,15 +12,18 @@ app = Flask(__name__)
 @app.route('/<image_name>.png')
 def test(image_name):
     layout_name = request.args.get('layout')
+    '''
     if layout_name is None or not os.path.isfile('static/layouts/' + layout_name + '.json'):
         if os.path.isfile('static/layouts/' + image_name + '.json'):
             layout_name = image_name
         else:
             return "Please specify a valid layout!"
+    '''
     config = get_config(layout_name)
-
+    '''
     if not os.path.isfile('static/images/' + image_name + '.png'):
         return "404 - Image not found"
+    '''
     # img = Image.open('static/images/' + image_name + '.png')
     img = get_image(image_name + '.png')
     draw = ImageDraw.Draw(img)
