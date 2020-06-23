@@ -1,3 +1,4 @@
+import io
 import json
 import os
 
@@ -29,8 +30,9 @@ def get_image(image_name):
         bucket_name = os.getenv('BUCKET_NAME')
         client = storage.Client()
         bucket = client.get_bucket(bucket_name)
-        image_file = bucket.get_blob('static/images/' + image_name).download_to_file()
-        return Image.open(image_file)
+        image_blob = bucket.get_blob('static/images/' + image_name).download_as_string()
+        img_bytes = io.BytesIO()
+        return Image.open(img_bytes)
     elif stage == 'dev':
         print("Running in dev environment, loading image from local file system")
         return Image.open('static/images/' + image_name)
