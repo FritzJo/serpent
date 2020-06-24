@@ -9,9 +9,17 @@ This repository contains the code for a simple web service to manipulate images.
 * Add overlay-images
 * Add simple progress bars
 
+## Configuration
+Serpent uses a json file to describe all changes that will be made to a given image. These files are called *layouts*. An example can be found in [```static/layouts/example.json```](static/layouts/example.json).
+
+To get further information about all options and the structure of layouts: Check out the [documentation](doc/Configuration.md)
+
 ## Deployment
 Serpent supports two major options for deployment: local and on [GCP](https://cloud.google.com). The local deployment should only be used for development and testing purposes. You could still run it in production with limitations regarding flexibility and performance.
 ### Local
+After successfully deploying the application you can test if everything is working by opening the following link in your browser.
+
+[```http://localhost:5000/example.png?text=HelloWorld```](http://localhost:5000/example.png?text=HelloWorld)
 #### Python
 ``` bash
 git clone https://github.com/FritzJo/serpent.git
