@@ -24,7 +24,7 @@ cd serpent
 pip install -r requirements.txt
 python app.py
 ```
-Its generally recommended to use a virtual environment, instead of installing all packages globally. You can find more information on how to do thate [here](https://docs.python.org/3/tutorial/venv.html)
+Its generally recommended to use a virtual environment, instead of installing all packages globally. You can find more information on how to do that [here](https://docs.python.org/3/tutorial/venv.html)
 #### Docker
 ``` bash
 git clone https://github.com/FritzJo/serpent.git
