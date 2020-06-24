@@ -17,9 +17,6 @@ To get further information about all options and the structure of layouts: Check
 ## Deployment
 Serpent supports two major options for deployment: local and on [GCP](https://cloud.google.com). The local deployment should only be used for development and testing purposes. You could still run it in production with limitations regarding flexibility and performance.
 ### Local
-After successfully deploying the application you can test if everything is working by opening the following link in your browser.
-
-[```http://localhost:5000/example.png?text=HelloWorld```](http://localhost:5000/example.png?text=HelloWorld)
 #### Python
 ``` bash
 git clone https://github.com/FritzJo/serpent.git
@@ -35,6 +32,11 @@ cd serpent
 docker build -t serpent .
 docker run  -p 5000:5000 serpent
 ```
+
+After successfully deploying the application you can test if everything is working by opening the following link in your browser:
+[```http://localhost:5000/example.png?text=HelloWorld```](http://localhost:5000/example.png?text=HelloWorld)
+
+You should see [this image](doc/result.png)
 
 ### Google Cloud Plattform
 TODO
