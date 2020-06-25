@@ -1,7 +1,7 @@
 # 🐍 Serpent (Serverless Picture Enrichment Toolkit)
 ![serpent overview](doc/images/serpent_overview.png "Basic Structure of Serpent")
 ## Description
-This repository contains the code for a simple web service to manipulate images. It's made to be easily deployed to Google Cloud Run to provide custom embeddable images with minimal cost.
+This repository contains the code for a simple web service to manipulate images. It's made to be easily deployed to Google Cloud Run to provide custom embeddable images at minimal cost.
 
 ## Functionality
 * Add text to an image
@@ -25,7 +25,7 @@ cd serpent
 pip install -r requirements.txt
 python app.py
 ```
-Its generally recommended to use a virtual environment, instead of installing all packages globally. You can find more information on how to do thate [here](https://docs.python.org/3/tutorial/venv.html)
+Its generally recommended to use a virtual environment, instead of installing all packages globally. You can find more information on how to do that [here](https://docs.python.org/3/tutorial/venv.html)
 #### Docker
 ``` bash
 git clone https://github.com/FritzJo/serpent.git
