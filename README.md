@@ -1,4 +1,7 @@
 # 🐍 Serpent (Serverless Picture Enrichment Toolkit)
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/545b3eb75f3e454a94346a905208f6db)](https://app.codacy.com/manual/fritzjo-git/serpent?utm_source=github.com&utm_medium=referral&utm_content=FritzJo/serpent&utm_campaign=Badge_Grade_Dashboard)
+
 ![serpent overview](doc/images/serpent_overview.png "Basic Structure of Serpent")
 ## Description
 This repository contains the code for a simple web service to create dynamically customized images. Textfields and other extras are defined in configuration files and their content can be assigned for each request by using URL parameters!
