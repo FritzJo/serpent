@@ -1,7 +1,8 @@
 # 🐍 Serpent (Serverless Picture Enrichment Toolkit)
 ![serpent overview](doc/images/serpent_overview.png "Basic Structure of Serpent")
 ## Description
-This repository contains the code for a simple web service to manipulate images. It's made to be easily deployed to Google Cloud Run to provide custom embeddable images at minimal cost.
+This repository contains the code for a simple web service to create dynamically customized images. Textfields and other extras are defined in configuration files and their content can be assigned for each request by using URL parameters!
+It's made to be easily deployed to Google Cloud Run to provide custom embeddable images at minimal cost.
 
 ## Functionality
 * Add text to an image
