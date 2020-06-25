@@ -1,6 +1,9 @@
 # 🐍 Serpent (Serverless Picture Enrichment Toolkit)
 ![serpent overview](doc/images/serpent_overview.png "Basic Structure of Serpent")
 ## Description
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/661e7a4b392d4bc78d1959779a4bfb15)](https://www.codacy.com/manual/fritzjo-git/serpent?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=FritzJo/serpent&amp;utm_campaign=Badge_Grade)
+
 This repository contains the code for a simple web service to create dynamically customized images. Textfields and other extras are defined in configuration files and their content can be assigned for each request by using URL parameters!
 It's made to be easily deployed to Google Cloud Run to provide custom embeddable images at minimal cost.
 
