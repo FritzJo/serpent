@@ -44,8 +44,43 @@ After successfully deploying the application you can test if everything is worki
 You should see [this image](doc/result.png)
 
 ### Google Cloud Plattform
-TODO
-
+* Create Google Cloud Account
+* Create a Project
+* Open [Cloud Source Repositories](https://source.cloud.google.com/) and add a new Repository
+    * Add a repository
+    * Connect external repository
+    * Select your project and GitHub as a Git provider
+    * Connect to GitHub
+* Configure the automatic build pipeline
+    * Open [Cloud Build](https://console.cloud.google.com/cloud-build/dashboard)
+    * Select "Triggers" and create a new trigger
+    * Choose the repository from the last step and set the branch to master
+    * Use "Cloud Build configuration file" as configuration (it's located in the root directory [```/cloudbuild.yaml```](/cloudbuild.yaml))
+    * Run the trigger once manually
+* Storage setup
+    * Images and layouts will be located in [Google Cloud Storage](https://console.cloud.google.com/storage/browser)
+    * Create a new bucket
+    * Create the following folder structure
+    
+    ```
+    static/
+        fonts/
+        images/
+        layouts/
+    ```
+* Go to [Google Cloud Run](https://console.cloud.google.com/run)
+    * The pipeline should have created the service
+        * If not, create a new service
+        * Select a region and service name
+        * Select the serpent image 
+    * Edit the service
+        * Check if the container port is 5000
+        * Select "Variables" and create the following
+    ```
+    STAGE=prod
+    BUCKET_NAME=<your-bucket-name>
+    ```
+    * Click "Deploy"!
 ## FAQ
 ### 1. What are the restrictions in a local deployment
 * Images can't be loaded from remote locations and have to be placed in the [```static/images```](static/images) folder.
