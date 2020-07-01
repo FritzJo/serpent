@@ -5,13 +5,11 @@ import os
 from PIL import Image, ImageFont
 from google.cloud import storage
 
-# Load bucket only once on startup
-bucket_name = os.getenv('BUCKET_NAME')
-client = storage.Client()
-bucket = client.get_bucket(bucket_name)
-
 
 def get_file_from_bucket(path):
+    bucket_name = os.getenv('BUCKET_NAME')
+    client = storage.Client()
+    bucket = client.get_bucket(bucket_name)
     blob = bucket.get_blob(path)
     blob_string = blob.download_as_string()
     return blob_string
