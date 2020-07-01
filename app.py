@@ -4,6 +4,7 @@ from flask import Flask, request, send_file
 from PIL import ImageFont
 from PIL import ImageDraw
 
+from image import scale_image
 from storage import get_config, get_image, get_font
 
 app = Flask(__name__)
@@ -23,7 +24,6 @@ def test(image_name):
             return "404 - Image not found"
     config = get_config(layout_name)
 
-    # img = Image.open('static/images/' + image_name + '.png')
     img = get_image(image_name + '.png')
     draw = ImageDraw.Draw(img)
 
@@ -45,20 +45,17 @@ def test(image_name):
         if extra['type'] == "image":
             offset = tuple(extra['offset'])
             image_file = extra['filename']
-            # bar = Image.open('static/images/' + image_file)
             bar = get_image(image_file)
             img.paste(bar, offset)
         if extra['type'] == "progressbar":
             # Add progressbar background
             offset = tuple(extra['position_bar'])
             image_file = extra['filename_bar']
-            # bar = Image.open('static/images/' + image_file)
             bar = get_image(image_file)
             img.paste(bar, offset)
 
             position_bar = tuple(extra['position_bar'])
             filename_bar = extra['filename_bar']
-            # bar = Image.open('static/images/' + filename_bar)
             bar = get_image(filename_bar)
             width, height = bar.size
             width_pointer = extra['width_pointer']
@@ -81,6 +78,26 @@ def test(image_name):
             shape[2] = shape[2] + progress_value
             draw.rectangle(shape, fill=pointer_color)
 
+        if extra['type'] == "varimage":
+            offset = tuple(extra['position_bar'])
+            filename_bar = extra['filename_bar']
+            height = extra['height']
+            width = extra['width']
+            max_v = extra['max']
+
+            # Load and scale pointer to fit varimage box (width + height) while keeping the aspect ratio
+            bar = get_image(filename_bar)
+            bar = scale_image(bar, height)
+
+            # Move position of pointer
+            offset = list(offset)
+            ratio = width / max_v
+            progress_value = float(request.args.get(extra['value_parameter_name'])) * ratio
+            offset[0] += int(progress_value)
+            offset = tuple(offset)
+
+            # Add pointer to base image
+            img.paste(bar, offset, bar)
     img.convert('RGBA').save(output, format='PNG')
     output.seek(0, 0)
 
