@@ -57,6 +57,7 @@ You should see [this image](doc/result.png)
     * Choose the repository from the last step and set the branch to master
     * Use "Cloud Build configuration file" as configuration (it's located in the root directory [```/cloudbuild.yaml```](/cloudbuild.yaml))
     * Run the trigger once manually
+    * It's totally normal for the service to fail to start (because its still missing environment variables, we will fix that in a later step)
 * Storage setup
     * Images and layouts will be located in [Google Cloud Storage](https://console.cloud.google.com/storage/browser)
     * Create a new bucket
