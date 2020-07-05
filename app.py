@@ -34,7 +34,7 @@ def test(image_name):
         font_info = tuple(info['font'])
         try:
             font = get_font(font_info[0], font_info[1])
-        except:
+        except IOError:
             font = ImageFont.load_default().font
         draw.text(position, text, color, font=font)
 
