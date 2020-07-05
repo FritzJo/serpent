@@ -5,18 +5,20 @@ import os
 from PIL import Image, ImageFont
 from google.cloud import storage
 
-
-def get_file_from_bucket(path):
+stage = os.getenv('STAGE', 'dev')
+if stage == 'prod':
     bucket_name = os.getenv('BUCKET_NAME')
     client = storage.Client()
     bucket = client.get_bucket(bucket_name)
+
+
+def get_file_from_bucket(path):
     blob = bucket.get_blob(path)
     blob_string = blob.download_as_string()
     return blob_string
 
 
 def get_config(config_name):
-    stage = os.getenv('STAGE', 'dev')
     if stage == 'prod':
         json_file = get_file_from_bucket('static/layouts/' + config_name + '.json')
         data = json.loads(json_file)
@@ -29,9 +31,10 @@ def get_config(config_name):
 
 
 def get_image(image_name):
-    stage = os.getenv('STAGE', 'dev')
     if stage == 'prod':
-        image_blob = get_file_from_bucket('static/images/' + image_name)
+        image_blob = bucket.get_blob('static/images/' + image_name).download_as_string()
+        # blob_string = blob
+        # image_blob = get_file_from_bucket('static/images/' + image_name)
         img_bytes = io.BytesIO(image_blob)
         return Image.open(img_bytes)
     elif stage == 'dev':
@@ -40,7 +43,6 @@ def get_image(image_name):
 
 
 def get_font(font_name, font_size):
-    stage = os.getenv('STAGE', 'dev')
     if stage == 'prod':
         font_blob = get_file_from_bucket('static/fonts/' + font_name + '.ttf')
         font_bytes = io.BytesIO(font_blob)
