@@ -83,9 +83,12 @@ You should see [this image](doc/result.png)
     ```
     * Click "Deploy"!
 ## FAQ
-### 1. What are the restrictions in a local deployment
+### 1. What are the restrictions in a local deployment?
 * Images can't be loaded from remote locations and have to be placed in the [```static/images```](static/images) folder.
 * Same goes for layouts ( [```static/layouts```](static/images))
 * If you use Docker, you have to build a new docker image for every change in configuration (and for each added image)
 * The flask backend runs in development mode and therefor only supports very few simultaneous connections.
 * This tool is developed with GCP in mind and only tested for that environment.
+
+### 2. How many layout items can be added to an image?
+Honestly? I don't know! Tell me if it crashes on large layouts and I'll update the FAQ.
