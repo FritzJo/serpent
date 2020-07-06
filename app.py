@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 
 @app.route('/<image_name>.png')
-def test(image_name):
+def process_image(image_name):
     layout_name = request.args.get('layout')
     stage = os.getenv('STAGE', 'dev')
     if stage == 'dev':
