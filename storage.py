@@ -36,11 +36,17 @@ def get_image(image_name):
         # blob_string = blob
         # image_blob = get_file_from_bucket('static/images/' + image_name)
         img_bytes = io.BytesIO(image_blob)
-        return Image.open(img_bytes)
+        img = Image.open(img_bytes)
     elif stage == 'dev':
         print("Running in dev environment, loading image from local file system")
-        return Image.open('static/images/' + image_name)
+        img=  Image.open('static/images/' + image_name)
 
+    # Fix image encoding
+    background = Image.new("RGBA", img.size, (255, 255, 255))
+    background.paste(img)
+    img = background
+
+    return img
 
 def get_font(font_name, font_size):
     if stage == 'prod':

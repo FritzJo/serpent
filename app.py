@@ -26,11 +26,6 @@ def process_image(image_name):
 
     img = get_image(image_name + '.png')
 
-    # Fix image encoding
-    background = Image.new("RGB", img.size, (255, 255, 255))
-    background.paste(img)
-    img = background
-
     draw = ImageDraw.Draw(img)
 
     for info in config['textfields']:
