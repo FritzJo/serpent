@@ -1,7 +1,7 @@
 import io
 import os.path
 from flask import Flask, request, send_file
-from PIL import ImageFont
+from PIL import ImageFont, Image
 from PIL import ImageDraw
 
 from image import scale_image
@@ -25,6 +25,12 @@ def process_image(image_name):
     config = get_config(layout_name)
 
     img = get_image(image_name + '.png')
+
+    # Fix image encoding
+    background = Image.new("RGB", img.size, (255, 255, 255))
+    background.paste(img)
+    img = background
+
     draw = ImageDraw.Draw(img)
 
     for info in config['textfields']:
