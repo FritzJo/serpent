@@ -54,17 +54,36 @@ def process_image(image_name):
             height = extra['height']
             width = extra['width']
             max_v = extra['max']
+            try:
+                orientation = extra['orientation']
+            except:
+                # default to horizontal to retain backwards compatibility
+                orientation = "horizontal"
 
-            # Load and scale pointer to fit varimage box (width + height) while keeping the aspect ratio
             bar = get_image(filename_bar)
-            bar = scale_image(bar, height)
 
-            # Move position of pointer
-            offset = list(offset)
-            ratio = width / max_v
-            progress_value = float(request.args.get(extra['value_parameter_name'])) * ratio
-            offset[0] += int(progress_value)
-            offset = tuple(offset)
+            if orientation == "horizontal":
+                # Scale pointer to fit varimage box (width + height) while keeping the aspect ratio
+                bar = scale_image(bar, height)
+
+                # Move position of pointer
+                offset = list(offset)
+                ratio = width / max_v
+                progress_value = float(request.args.get(extra['value_parameter_name'])) * ratio
+                offset[0] += int(progress_value)
+                offset = tuple(offset)
+
+            else:
+                bar = scale_image(bar, width, orientation)
+                # Move position of pointer
+                offset = list(offset)
+                ratio = height / max_v
+                progress_value = extra['max'] - float(request.args.get(extra['value_parameter_name'])) * ratio
+                print(float(request.args.get(extra['value_parameter_name'])))
+                print(ratio)
+                print(progress_value)
+                offset[1] += int(progress_value)
+                offset = tuple(offset)
 
             # Add pointer to base image
             img.paste(bar, offset, bar)
@@ -72,6 +91,12 @@ def process_image(image_name):
     output.seek(0, 0)
 
     return send_file(output, mimetype='image/png', as_attachment=False)
+
+
+@app.route('/')
+def home():
+    return '<h1>SerPEnT - SERverless Picture ENrichment Toolkit made for Google Cloud Run</h1>' \
+           '<h2>Check out the source code at <a href="https://github.com/FritzJo/serpent">Github</a></h2>'
 
 
 if __name__ == "__main__":
