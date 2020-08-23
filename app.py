@@ -93,5 +93,11 @@ def process_image(image_name):
     return send_file(output, mimetype='image/png', as_attachment=False)
 
 
+@app.route('/')
+def home():
+    return '<h1>SerPEnT - SERverless Picture ENrichment Toolkit made for Google Cloud Run</h1>' \
+           '<h2>Check out the source code at <a href="https://github.com/FritzJo/serpent">Github</a></h2>'
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
