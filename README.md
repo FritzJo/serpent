@@ -35,11 +35,11 @@ Its generally recommended to use a virtual environment, instead of installing al
 git clone https://github.com/FritzJo/serpent.git
 cd serpent
 docker build -t serpent .
-docker run  -p 5000:5000 serpent
+docker run  -p 8080:8080 serpent
 ```
 
 After successfully deploying the application you can test if everything is working by opening the following link in your browser:
-[```http://localhost:5000/example.png?text=HelloWorld```](http://localhost:5000/example.png?text=HelloWorld)
+[```http://localhost:8080/example.png?text=HelloWorld```](http://localhost:8080/example.png?text=HelloWorld)
 
 You should see [this image](doc/result.png)
 
@@ -75,7 +75,7 @@ You should see [this image](doc/result.png)
         * Select a region and service name
         * Select the serpent image 
     * Edit the service
-        * Check if the container port is 5000
+        * Check if the container port is 8080
         * Select "Variables" and create the following
     ```
     STAGE=prod
