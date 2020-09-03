@@ -69,7 +69,8 @@ def process_image(image_name):
                 # Move position of pointer
                 offset = list(offset)
                 ratio = width / max_v
-                progress_value = float(request.args.get(extra['value_parameter_name'])) * ratio
+                value = min(request.args.get(extra['value_parameter_name']), 100)
+                progress_value = float(value) * ratio
                 offset[0] += int(progress_value)
                 offset = tuple(offset)
 
