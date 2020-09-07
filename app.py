@@ -1,8 +1,7 @@
 import io
 import os.path
 from flask import Flask, request, send_file
-from PIL import ImageFont, Image
-from PIL import ImageDraw
+from PIL import ImageFont, ImageDraw
 
 from image import scale_image
 from storage import get_config, get_image, get_font
