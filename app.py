@@ -24,7 +24,7 @@ def process_image(image_name):
     try:
         config = get_config(layout_name)
     except TypeError:
-        return "404 - Configuration/Layout with the name " + layout_name + " not found!"
+        return "404 - Configuration/Layout not found!"
     img = get_image(image_name + '.png')
 
     draw = ImageDraw.Draw(img)
