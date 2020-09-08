@@ -21,8 +21,10 @@ def process_image(image_name):
                 return "Please specify a valid layout!"
         if not os.path.isfile('static/images/' + image_name + '.png'):
             return "404 - Image not found"
-    config = get_config(layout_name)
-
+    try:
+        config = get_config(layout_name)
+    except TypeError:
+        return "404 - Configuration/Layout with the name " + layout_name + " not found!"
     img = get_image(image_name + '.png')
 
     draw = ImageDraw.Draw(img)
