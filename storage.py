@@ -56,4 +56,8 @@ def get_font(font_name, font_size):
         return ImageFont.truetype(font_bytes, font_size)
     elif stage == 'dev':
         print("Running in dev environment, loading font from local file system")
-        return ImageFont.truetype('static/fonts/' + font_name + '.ttf', font_size)
+        try:
+            return ImageFont.truetype('static/fonts/' + font_name + '.ttf', font_size)
+        except OSError:
+            print("Can't find font! Loading default font")
+            return ImageFont.load_default()
