@@ -7,7 +7,7 @@ from google.cloud import storage
 
 stage = os.getenv('STAGE', 'dev')
 if stage == 'prod':
-    bucket_name = os.getenv('BUCKET_NAME')
+    bucket_name = os.getenv('BUCKET_NAME', "serpent-bucket")
     client = storage.Client()
     bucket = client.get_bucket(bucket_name)
 
