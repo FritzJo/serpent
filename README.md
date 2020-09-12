@@ -44,6 +44,7 @@ After successfully deploying the application you can test if everything is worki
 You should see [this image](doc/result.png)
 
 ### Google Cloud Plattform
+* Fork this repository to your Github account (Currently there is no way to connect a Github repository that you dont own, unless Google adds this Option you have to keep track of updates yourself)
 * Create Google Cloud Account
 * Create a Project
 * Open [Cloud Source Repositories](https://source.cloud.google.com/) and add a new Repository
@@ -57,7 +58,7 @@ You should see [this image](doc/result.png)
     * Choose the repository from the last step and set the branch to master
     * Use "Cloud Build configuration file" as configuration (it's located in the root directory [```/cloudbuild.yaml```](/cloudbuild.yaml))
     * Run the trigger once manually
-    * It's totally normal for the service to fail to start (because its still missing environment variables, we will fix that in a later step)
+    * ~~It's totally normal for the service to fail to start (because its still missing environment variables, we will fix that in a later step)~~ If this still happens to you, please create an issue!
 * Storage setup
     * Images and layouts will be located in [Google Cloud Storage](https://console.cloud.google.com/storage/browser)
     * Create a new bucket
