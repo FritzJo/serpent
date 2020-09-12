@@ -1,0 +1,9 @@
+doc/
+test/
+venv/
+__pycache__/
+.idea/
+.git/
+.gitignore
+LICENSE
+README.md
