@@ -3,6 +3,7 @@ from PIL import Image
 
 # https://stackoverflow.com/questions/273946/how-do-i-resize-an-image-using-pil-and-maintain-its-aspect-ratio
 def scale_image(img, target_value, orientation="horizontal"):
+    target_value = int(target_value)
     if orientation == "horizontal":
         hpercent = (target_value / float(img.size[1]))
         wsize = int((float(img.size[0]) * float(hpercent)))
