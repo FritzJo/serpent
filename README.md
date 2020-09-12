@@ -41,7 +41,7 @@ docker run  -p 8080:8080 serpent
 After successfully deploying the application you can test if everything is working by opening the following link in your browser:
 [```http://localhost:8080/example.png?text=HelloWorld```](http://localhost:8080/example.png?text=HelloWorld)
 
-You should see [this image](doc/result.png)
+You should see [this image](doc/images/result.png)
 
 ### Google Cloud Plattform
 * Fork this repository to your Github account (Currently there is no way to connect a Github repository that you dont own, unless Google adds this Option you have to keep track of updates yourself)
