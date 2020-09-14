@@ -2,9 +2,9 @@ import json
 import os
 import unittest
 
-from PIL import Image, ImageFont
+from PIL import Image
 
-from storage import get_config, get_image, get_font
+from storage import get_config, get_image
 
 base_directory = os.path.abspath(os.curdir)
 
