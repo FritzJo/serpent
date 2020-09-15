@@ -1,14 +1,14 @@
 FROM python:3.9-rc
 
-COPY . /app
-
-# Create and change to the app directory.
-WORKDIR /app
-
+# Install requirements
+COPY requirements.txt /requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy app
+COPY src/ /app
+WORKDIR /app
+
 RUN chmod 444 app.py
-RUN chmod 444 requirements.txt
 
 # Service must listen to $PORT environment variable.
 # This default value facilitates local development.
