@@ -2,10 +2,12 @@ import io
 import os.path
 
 from flask import Flask, request, send_file
-from PIL import ImageFont, ImageDraw
+from PIL import ImageDraw
 
-from src.image import scale_image
-from src.storage import get_config, get_image, get_font
+from src.modules.image import add_image
+from src.modules.textfield import add_textfield
+from src.modules.varimage import add_varimage
+from src.storage import get_config, get_image
 
 app = Flask(__name__)
 
@@ -39,11 +41,7 @@ def process_image(image_name):
         position = tuple(info['position'])
         text = request.args.get(info['name'])
         font_info = tuple(info['font'])
-        try:
-            font = get_font(font_info[0], font_info[1])
-        except IOError:
-            font = ImageFont.load_default().font
-        draw.text(position, text, color, font=font)
+        draw = add_textfield(draw, text, position, font_info, color)
 
     output = io.BytesIO()
 
@@ -51,47 +49,20 @@ def process_image(image_name):
         if extra['type'] == "image":
             offset = tuple(extra['offset'])
             image_file = extra['filename']
-            bar = get_image(image_file)
-            img.paste(bar, offset)
-
+            img = add_image(img, image_file, offset)
         if extra['type'] == "varimage":
             offset = tuple(extra['position_bar'])
             filename_bar = extra['filename_bar']
             height = extra['height']
             width = extra['width']
             max_v = extra['max']
+            progress_parameter_value = request.args.get(extra['value_parameter_name'])
             try:
                 orientation = extra['orientation']
             except:
                 # default to horizontal to retain backwards compatibility
                 orientation = "horizontal"
-
-            bar = get_image(filename_bar)
-            progress_parameter_value = request.args.get(extra['value_parameter_name'])
-            if orientation == "horizontal":
-                # Scale pointer to fit varimage box (width + height) while keeping the aspect ratio
-                bar = scale_image(bar, height)
-
-                # Move position of pointer
-                offset = list(offset)
-                ratio = width / max_v
-                value = min(progress_parameter_value, max_v)
-                progress_value = float(value) * ratio
-                offset[0] += int(progress_value)
-                offset = tuple(offset)
-
-            else:
-                bar = scale_image(bar, width, orientation)
-                # Move position of pointer
-                offset = list(offset)
-                ratio = height / max_v
-                value = min(progress_parameter_value, max_v)
-                progress_value = extra['max'] - float(value) * ratio
-                offset[1] += int(progress_value)
-                offset = tuple(offset)
-
-            # Add pointer to base image
-            img.paste(bar, offset, bar)
+            img = add_varimage(img, filename_bar, offset, height, width, max_v, progress_parameter_value, orientation)
     img.convert('RGBA').save(output, format='PNG')
     output.seek(0, 0)
 
