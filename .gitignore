@@ -1,5 +1,5 @@
 venv/
 .idea/
-src/
 gcp-secret.json
 __pycache__/
+src/static/fonts/
