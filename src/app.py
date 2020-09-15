@@ -1,16 +1,21 @@
 import io
 import os.path
+
 from flask import Flask, request, send_file
 from PIL import ImageFont, ImageDraw
 
-from image import scale_image
-from storage import get_config, get_image, get_font
+from src.image import scale_image
+from src.storage import get_config, get_image, get_font
 
 app = Flask(__name__)
+
+# Make sure that the working directory matches the location of app.py
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
 @app.route('/<image_name>.png')
 def process_image(image_name):
+    print(os.path.abspath(os.curdir))
     layout_name = request.args.get('layout')
     stage = os.getenv('STAGE', 'dev')
     if stage == 'dev':
