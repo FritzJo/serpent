@@ -1,5 +1,4 @@
 venv/
 .idea/
-src/
 gcp-secret.json
 __pycache__/

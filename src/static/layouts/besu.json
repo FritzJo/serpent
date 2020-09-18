@@ -1,0 +1,50 @@
+{
+  "textfields": [
+     {
+      "name": "ziel",
+      "position": [300, 197],
+      "color": [0, 0, 0],
+      "font": ["Roboto-Light",30]
+    },
+    {
+      "name": "klasse",
+      "position": [300, 290],
+      "color": [0, 0, 0],
+      "font": ["Roboto-Light",30]
+    },
+    {
+      "name": "preis",
+      "position": [810, 197],
+      "color": [0, 0, 0],
+      "font": ["Roboto-Light",30]
+    },
+    {
+      "name": "co2",
+      "position": [1130, 197],
+      "color": [0, 0, 0],
+      "font": ["Roboto-Light",30]
+    }
+  ],
+  "extras": [
+    {
+      "type": "varimage",
+      "min": 0,
+      "max": 100,
+      "filename_bar": "pointer.png",
+      "position_bar": [355, 350],
+      "height": 100,
+      "width": 860,
+      "value_parameter_name": "value1"
+    },
+    {
+      "type": "varimage",
+      "min": 0,
+      "max": 100,
+      "filename_bar": "pointer.png",
+      "position_bar": [355, 443],
+      "height": 1900,
+      "width": 860,
+      "value_parameter_name": "value2"
+    }
+  ]
+}
