@@ -21,6 +21,8 @@ class Layout:
         If that is not the case, or no layout file with a matching name exists in the layout folder,
         the function looks for a layout with the name of the provided image name variable.
 
+        Currently no checks are performed in a production environment. This only works for local/dev deployments
+
         :param image_name: name of the image file (optional)
         :type image_name: str
 
