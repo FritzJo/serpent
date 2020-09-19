@@ -4,10 +4,17 @@ from src.storage import get_config
 
 
 class Layout:
+
     """The Layout class represents a loaded layout file. It contains functions to validate a
-    layout and access its components."""
+    layout and access its components.
+    """
 
     def __init__(self, name):
+        """ Constructs a Layout object.
+
+        :param name: Name of the layout/configuration file
+        :type name: str
+        """
         self.stage = os.getenv('STAGE', 'dev')
         self.layout_name = name
 
@@ -27,7 +34,8 @@ class Layout:
         :type image_name: str
 
         :returns: If the object has a valid layout name and that layout also exists
-        :rtype: bool"""
+        :rtype: bool
+        """
         if self.stage == 'dev':
             if self.layout_name is None or not os.path.isfile('static/layouts/' + self.layout_name + '.json'):
                 if os.path.isfile('static/layouts/' + image_name + '.json'):
@@ -44,7 +52,8 @@ class Layout:
         Returns all textfields defined in the loaded layout
 
         :returns: a JSON array with all textfields from the layout
-        :rtype: list"""
+        :rtype: list
+        """
         return self.config['textfields']
 
     def get_extras(self):
@@ -53,5 +62,6 @@ class Layout:
         Returns all extras defined in the loaded layout
 
         :returns: a JSON array with all extras from the layout
-        :rtype: list"""
+        :rtype: list
+        """
         return self.config['extras']

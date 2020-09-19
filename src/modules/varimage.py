@@ -3,13 +3,20 @@ from src.storage import get_image
 
 
 class Varimage:
+
     """The Varmage class contains all functions to add more complex images to a base image.
     The main difference between this and the normal Image class is, that a Varimage can have
     a horizontal or vertical orientation, is scalable to fit a defined height/width and can
     be moved in an area by a parameter.
-    You can use this class to create for example to create progress bars"""
+    You can use this class to create for example to create progress bars
+    """
 
     def __init__(self, extra):
+        """ Constructs a Varimage object.
+
+        :param extra: Varimage configuration json
+        :type extra: JSON
+        """
         self.offset = tuple(extra['position_bar'])
         self.filename_bar = extra['filename_bar']
         self.height = extra['height']
@@ -27,7 +34,8 @@ class Varimage:
         :type orientation: str
 
         :returns: The image from the parameter with the newly added varimage
-        :rtype: PIL image"""
+        :rtype: PIL image
+        """
         bar = get_image(self.filename_bar)
         if orientation == "horizontal":
             # Scale pointer to fit varimage box (width + height) while keeping the aspect ratio

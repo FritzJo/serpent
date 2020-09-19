@@ -2,9 +2,15 @@ from src.storage import get_image
 
 
 class Image:
+
     """The Image class contains all functions to add additional images to a base image."""
 
     def __init__(self, extra):
+        """ Constructs a Image object.
+
+        :param extra: Image configuration json
+        :type extra: JSON
+        """
         self.image_file = extra['filename']
         self.offset = tuple(extra['offset'])
 
@@ -15,7 +21,8 @@ class Image:
         :type img: PIL image
 
         :returns: The image from the parameter with the newly added image
-        :rtype: PIL image"""
+        :rtype: PIL image
+        """
         bar = get_image(self.image_file)
         img.paste(bar, self.offset)
         return img

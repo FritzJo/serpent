@@ -13,7 +13,8 @@ def scale_image(img, target_value, orientation="horizontal"):
     :type orientation: str
 
     :returns: Scaled version of the input image
-    :rtype: PIL image"""
+    :rtype: PIL image
+    """
     target_value = int(target_value)
     if orientation == "horizontal":
         hpercent = (target_value / float(img.size[1]))

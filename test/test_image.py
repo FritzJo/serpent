@@ -8,7 +8,7 @@ from src.image import scale_image
 class TestScaling(unittest.TestCase):
     def test_no_scaling(self):
         img = Image.open('../src/static/images/example.png')
-        current_width, current_height = img.size
+        _, current_height = img.size
         img_scaled = scale_image(img, current_height)
         self.assertEqual(img.size, img_scaled.size)
 
