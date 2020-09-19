@@ -18,6 +18,14 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 @app.route('/<image_name>.png')
 def process_image(image_name):
+    """Central function of the application. This processes any request for an image,
+    applies extras and manages URL parameters.
+
+    :param image_name: Requested image
+    :type image_name: str
+
+    :returns: Final processed image with all extras
+    :rtype: http response (image)"""
     layout_name = request.args.get('layout')
     layout_object = Layout(layout_name)
     stage = os.getenv('STAGE', 'dev')
@@ -61,6 +69,10 @@ def process_image(image_name):
 
 @app.route('/')
 def home():
+    """Shows a home/welcome page if the applications root directory is requested.
+
+    :returns: Simple message with general information about the application
+    :rtype: http response (html)"""
     return '<h1>SerPEnT - SERverless Picture ENrichment Toolkit made for Google Cloud Run</h1>' \
            '<h2>Check out the source code at <a href="https://github.com/FritzJo/serpent">Github</a></h2>'
 
