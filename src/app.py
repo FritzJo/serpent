@@ -57,9 +57,10 @@ def process_image(image_name):
         if extra['type'] == "varimage":
             varimg = Varimage(extra)
             progress_parameter_value = request.args.get(extra['value_parameter_name'])
-            try:
+
+            if 'orientation' in extra:
                 orientation = extra['orientation']
-            except:
+            else:
                 # default to horizontal to retain backwards compatibility
                 orientation = "horizontal"
             img = varimg.add_varimage(img, progress_parameter_value, orientation)
