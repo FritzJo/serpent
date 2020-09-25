@@ -6,10 +6,14 @@ from PIL import Image, ImageFont
 from google.cloud import storage
 
 stage = os.getenv('STAGE', 'dev')
-if stage == 'prod':
-    bucket_name = os.getenv('BUCKET_NAME', "serpent-bucket")
-    client = storage.Client()
-    bucket = client.get_bucket(bucket_name)
+try:
+    if stage == 'prod':
+        bucket_name = os.getenv('BUCKET_NAME', "serpent-bucket")
+        client = storage.Client()
+        bucket = client.get_bucket(bucket_name)
+except google.api_core.exceptions.NotFound:
+    print("[Error] Bucket not found, falling back to local storage!")
+    stage = "dev"
 
 
 def get_file_from_bucket(path):
