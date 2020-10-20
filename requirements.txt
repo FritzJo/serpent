@@ -7,7 +7,7 @@ google-api-core==1.22.4
 google-auth==1.22.1
 google-cloud-core==1.4.3
 google-resumable-media==1.1.0
-google-cloud-storage==1.31.2
+google-cloud-storage==1.32.0
 googleapis-common-protos==1.52.0
 idna==2.10
 itsdangerous==1.1.0
