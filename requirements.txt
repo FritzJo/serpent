@@ -4,7 +4,7 @@ chardet==3.0.4
 click==7.1.2
 Flask==1.1.2
 google-api-core==1.23.0
-google-auth==1.22.1
+google-auth==1.23.0
 google-cloud-core==1.4.3
 google-resumable-media==1.1.0
 google-cloud-storage==1.32.0
