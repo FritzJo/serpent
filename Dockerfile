@@ -1,4 +1,4 @@
-FROM python:3.9-rc
+FROM python:3.9
 
 # Install requirements
 COPY requirements.txt /requirements.txt
