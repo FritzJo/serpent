@@ -1,7 +1,6 @@
 import io
 import os.path
 import traceback
-import sys
 
 from flask import Flask, request, send_file
 from PIL import ImageDraw
@@ -44,7 +43,6 @@ def process_image(image_name):
     output = io.BytesIO()
     try:
         img = get_image(image_name + '.png')
-
         draw = ImageDraw.Draw(img)
 
         for info in layout_object.get_textfields():
@@ -66,15 +64,11 @@ def process_image(image_name):
                     # default to horizontal to retain backwards compatibility
                     orientation = "horizontal"
                 img = varimg.add_varimage(img, progress_parameter_value, orientation)
-
-        img.convert('RGBA').save(output, format='PNG')
-        output.seek(0, 0)
-    except:
+    except TypeError:
         traceback.print_exc()
         img = get_image('error.png')
-        img.convert('RGBA').save(output, format='PNG')
-        output.seek(0, 0)
-        return send_file(output, mimetype='image/png', as_attachment=False)
+    img.convert('RGBA').save(output, format='PNG')
+    output.seek(0, 0)
     return send_file(output, mimetype='image/png', as_attachment=False)
 
 
