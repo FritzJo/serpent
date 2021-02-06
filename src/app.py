@@ -3,13 +3,9 @@ import os.path
 import traceback
 
 from flask import Flask, request, send_file
-from PIL import ImageDraw
 
 from src.image import add_extras, add_text
 from src.layout import Layout
-from src.modules.image import Image
-from src.modules.textfield import Textfield
-from src.modules.varimage import Varimage
 from src.storage import get_image
 
 app = Flask(__name__)
