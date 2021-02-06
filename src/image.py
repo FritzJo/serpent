@@ -1,27 +1,55 @@
-from PIL import Image
+from PIL import Image, ImageDraw
+
+from src.modules.textfield import Textfield
+from src.modules.varimage import Varimage
 
 
-# https://stackoverflow.com/questions/273946/how-do-i-resize-an-image-using-pil-and-maintain-its-aspect-ratio
-def scale_image(img, target_value, orientation="horizontal"):
-    """Scales an image based on the given parameters
+def add_text(img, layout_object, request):
+    """Adds textfields to an image as specified by the given layout
 
     :param img: Base image
     :type img: PIL image
-    :param target_value: desired width or height (depending on the orientation)
-    :type target_value: int
-    :param orientation: Orientation of the varimage: horizontal or vertical (optional)
-    :type orientation: str
+    :param layout_object: Target layout
+    :type layout_object: Layout object
+    :param request: Request with all URL parameters
+    :type request: str
 
-    :returns: Scaled version of the input image
+    :returns: New image with added text
     :rtype: PIL image
     """
-    target_value = int(target_value)
-    if orientation == "horizontal":
-        hpercent = (target_value / float(img.size[1]))
-        wsize = int((float(img.size[0]) * float(hpercent)))
-        img = img.resize((wsize, target_value), Image.ANTIALIAS)
-    else:
-        wpercent = (target_value / float(img.size[0]))
-        hsize = int((float(img.size[1]) * float(wpercent)))
-        img = img.resize((target_value, hsize), Image.ANTIALIAS)
+    draw = ImageDraw.Draw(img)
+    for info in layout_object.get_textfields():
+        tf = Textfield(info)
+        text = request.args.get(info['name'])
+        tf.add_textfield(draw, text)
+    return img
+
+
+def add_extras(img, layout_object, request):
+    """Adds extras (images, varimages,...) to an image as specified by the given layout
+
+    :param img: Base image
+    :type img: PIL image
+    :param layout_object: Target layout
+    :type layout_object: Layout object
+    :param request: Request with all URL parameters
+    :type request: str
+
+    :returns: New image with added extras
+    :rtype: PIL image
+    """
+    for extra in layout_object.get_extras():
+        if extra['type'] == "image":
+            im = Image(extra)
+            img = im.add_image(img)
+        if extra['type'] == "varimage":
+            varimg = Varimage(extra)
+            progress_parameter_value = request.args.get(extra['value_parameter_name'])
+
+            if 'orientation' in extra:
+                orientation = extra['orientation']
+            else:
+                # default to horizontal to retain backwards compatibility
+                orientation = "horizontal"
+            img = varimg.add_varimage(img, progress_parameter_value, orientation)
     return img

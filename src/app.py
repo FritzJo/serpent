@@ -5,6 +5,7 @@ import traceback
 from flask import Flask, request, send_file
 from PIL import ImageDraw
 
+from src.image import add_extras, add_text
 from src.layout import Layout
 from src.modules.image import Image
 from src.modules.textfield import Textfield
@@ -43,30 +44,12 @@ def process_image(image_name):
     output = io.BytesIO()
     try:
         img = get_image(image_name + '.png')
-        draw = ImageDraw.Draw(img)
-
-        for info in layout_object.get_textfields():
-            tf = Textfield(info)
-            text = request.args.get(info['name'])
-            tf.add_textfield(draw, text)
-
-        for extra in layout_object.get_extras():
-            if extra['type'] == "image":
-                im = Image(extra)
-                img = im.add_image(img)
-            if extra['type'] == "varimage":
-                varimg = Varimage(extra)
-                progress_parameter_value = request.args.get(extra['value_parameter_name'])
-
-                if 'orientation' in extra:
-                    orientation = extra['orientation']
-                else:
-                    # default to horizontal to retain backwards compatibility
-                    orientation = "horizontal"
-                img = varimg.add_varimage(img, progress_parameter_value, orientation)
+        img = add_text(img, layout_object, request)
+        img = add_extras(img, layout_object, request)
     except TypeError:
         traceback.print_exc()
         img = get_image('error.png')
+
     img.convert('RGBA').save(output, format='PNG')
     output.seek(0, 0)
     return send_file(output, mimetype='image/png', as_attachment=False)
