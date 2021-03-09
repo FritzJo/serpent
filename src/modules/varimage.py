@@ -1,6 +1,6 @@
 from PIL import Image
 
-from src.storage import get_image
+from src.utils.storage import get_image
 
 
 # https://stackoverflow.com/questions/273946/how-do-i-resize-an-image-using-pil-and-maintain-its-aspect-ratio

@@ -2,7 +2,7 @@ import unittest
 
 from PIL import Image
 
-from src.image import scale_image
+from src.modules.varimage import scale_image
 
 
 class TestScaling(unittest.TestCase):
@@ -14,7 +14,7 @@ class TestScaling(unittest.TestCase):
 
     def test_50_scaling(self):
         img = Image.open('../src/static/images/example.png')
-        current_width, current_height = img.size
+        _, current_height = img.size
         img_scaled = scale_image(img, current_height / 2)
         self.assertEqual(img.size[0] / 2, img_scaled.size[0])
         self.assertEqual(img.size[1] / 2, img_scaled.size[1])

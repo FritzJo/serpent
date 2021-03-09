@@ -101,3 +101,6 @@ You should see [this image](doc/images/result.png)
 
 ### 2. How many layout items can be added to an image?
 Honestly? I don't know! Tell me if it crashes on large layouts and I'll update the FAQ.
+
+### 3. Can I change to location of static files for local deployments?
+Yes. The default path of static files (images, layouts, fonts) is ```static```. To change that, set the ```LOCAL_PATH``` environment variable.

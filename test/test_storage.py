@@ -4,7 +4,7 @@ import unittest
 
 from PIL import Image
 
-from src.storage import get_config, get_image
+from src.utils.storage import get_config, get_image
 
 base_directory = os.path.abspath(os.curdir)
 

@@ -1,4 +1,4 @@
-from src.storage import get_font
+from src.utils.storage import get_font
 
 
 class Textfield:

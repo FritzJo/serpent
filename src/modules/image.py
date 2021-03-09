@@ -1,4 +1,4 @@
-from src.storage import get_image
+from src.utils.storage import get_image
 
 
 class Image:
