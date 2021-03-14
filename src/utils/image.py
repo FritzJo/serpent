@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw
 
-from src.modules.textfield import Textfield
-from src.modules.varimage import Varimage
+from modules.textfield import Textfield
+from modules.varimage import Varimage
 
 
 def add_text(img, layout_object, request):

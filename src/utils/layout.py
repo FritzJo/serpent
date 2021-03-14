@@ -1,6 +1,6 @@
 import os
 
-from src.utils.storage import get_config
+from utils.storage import get_config
 
 
 class Layout:

@@ -2,7 +2,7 @@ import unittest
 
 from PIL import Image
 
-from src.modules.varimage import scale_image
+from modules.varimage import scale_image
 
 
 class TestScaling(unittest.TestCase):

@@ -4,9 +4,9 @@ import traceback
 
 from flask import Flask, request, send_file
 
-from src.utils.image import add_extras, add_text
-from src.utils.layout import Layout
-from src.utils.storage import get_image
+from utils.image import add_extras, add_text
+from utils.layout import Layout
+from utils.storage import get_image
 
 app = Flask(__name__)
 
