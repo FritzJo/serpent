@@ -8,7 +8,7 @@ google-auth==1.30.0
 google-resumable-media==1.2.0
 google-cloud-core==1.6.0
 googleapis-common-protos==1.53.0
-google-cloud-storage==1.37.1
+google-cloud-storage==1.38.0
 idna==2.10
 itsdangerous==1.1.0
 Jinja2==2.11.3
