@@ -3,7 +3,7 @@ certifi==2021.10.8
 chardet==4.0.0
 click==8.0.3
 Flask==2.0.2
-google-api-core==2.2.2
+google-api-core==2.4.0
 google-auth==2.3.3
 google-resumable-media==2.1.0
 google-cloud-core==2.1.0
