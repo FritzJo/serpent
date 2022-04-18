@@ -6,7 +6,7 @@ Flask==2.0.2
 google-api-core==2.2.2
 google-auth==2.3.3
 google-resumable-media==2.1.0
-google-cloud-core==2.1.0
+google-cloud-core==2.3.0
 googleapis-common-protos==1.54.0
 google-cloud-storage==1.43.0
 idna==2.10
