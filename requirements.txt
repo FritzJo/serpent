@@ -4,7 +4,7 @@ chardet==4.0.0
 click==8.0.3
 Flask==2.0.2
 google-api-core==2.2.2
-google-auth==2.3.3
+google-auth==2.14.0
 google-resumable-media==2.1.0
 google-cloud-core==2.1.0
 googleapis-common-protos==1.54.0
