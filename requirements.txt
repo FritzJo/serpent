@@ -1,4 +1,4 @@
-cachetools==4.2.4
+cachetools==5.2.1
 certifi==2021.10.8
 chardet==4.0.0
 click==8.0.3
