@@ -19,13 +19,13 @@ def scale_image(img, target_value, orientation="horizontal"):
     """
     target_value = int(target_value)
     if orientation == "horizontal":
-        hpercent = (target_value / float(img.size[1]))
-        wsize = int((float(img.size[0]) * float(hpercent)))
-        img = img.resize((wsize, target_value), Image.ANTIALIAS)
+        height_percent = (target_value / float(img.size[1]))
+        width_size = int((float(img.size[0]) * float(height_percent)))
+        img = img.resize((width_size, target_value), Image.ANTIALIAS)
     else:
-        wpercent = (target_value / float(img.size[0]))
-        hsize = int((float(img.size[1]) * float(wpercent)))
-        img = img.resize((target_value, hsize), Image.ANTIALIAS)
+        width_percent = (target_value / float(img.size[0]))
+        height_size = int((float(img.size[1]) * float(width_percent)))
+        img = img.resize((target_value, height_size), Image.ANTIALIAS)
     return img
 
 

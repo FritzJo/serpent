@@ -2,7 +2,6 @@ from utils.storage import get_image
 
 
 class Image:
-
     """The Image class contains all functions to add additional images to a base image."""
 
     def __init__(self, extra):

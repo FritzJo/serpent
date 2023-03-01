@@ -2,16 +2,12 @@ from utils.storage import get_font
 
 
 class Textfield:
-
     """The Textfield class contains all functions to add text to a base image. It handles parameters,
     like font, font size and position.
     """
 
     def __init__(self, info):
         """ Constructs a Textfield object.
-
-        :param extra: Textfield configuration json
-        :type extra: JSON
         """
         self.color = tuple(info['color'])
         self.position = tuple(info['position'])
