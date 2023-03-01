@@ -26,7 +26,7 @@ def process_image(image_name):
     :returns: Final processed image with all extras
     :rtype: http response (image)
     """
-    layout_name = request.args.get('layout')
+    layout_name = request.args.get('layout', default=image_name)
     layout_object = Layout(layout_name)
     stage = os.getenv('STAGE', 'dev')
     if stage == 'dev':

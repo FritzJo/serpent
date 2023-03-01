@@ -20,7 +20,7 @@ def add_text(img, layout_object, request):
     draw = ImageDraw.Draw(img)
     for info in layout_object.get_textfields():
         tf = Textfield(info)
-        text = request.args.get(info['name'])
+        text = request.args.get(info['name'], default="MISSING_TEXT_PARAMETER")
         tf.add_textfield(draw, text)
     return img
 
@@ -44,7 +44,7 @@ def add_extras(img, layout_object, request):
             img = im.add_image(img)
         if extra['type'] == "varimage":
             varimg = Varimage(extra)
-            progress_parameter_value = request.args.get(extra['value_parameter_name'])
+            progress_parameter_value = request.args.get(extra['value_parameter_name'], default=0)
 
             if 'orientation' in extra:
                 orientation = extra['orientation']
